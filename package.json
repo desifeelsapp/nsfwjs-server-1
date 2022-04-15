@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^3.15.0",
+    "express": "^4.17.3",
+    "multer": "^1.4.4",
+    "node-fetch": "^3.2.3",
+    "nsfwjs": "^2.4.1",
+    "sharp": "^0.30.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "nsfwjs-server",
+  "version": "1.0.0",
+  "description": "Detect NSFW content server-side",
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "lamclam",
+  "license": "MIT"
+}
