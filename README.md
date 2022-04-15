@@ -1,9 +1,7 @@
 # nsfwjs-server
----------------
 Detect NSFW content server-side
 This project is an api server which can identify unseemly images.
 ## Acceptable image formate:
----------------
 - `jpeg`
 - `png`
 - `webp`
@@ -12,7 +10,6 @@ This project is an api server which can identify unseemly images.
 - `svg`
 
 ## Installation
----------------
 nsfwjs-server requires [Node.js](https://nodejs.org/) v12+ to run.
 Install the dependencies and start the server.
 
@@ -23,17 +20,15 @@ npm run start
 ```
 
 ## Usage
----------------
 ```sh
 #use POST as input
 curl --location --request POST '<your-server-ip>:3300/' --form '=@"/path/to/example.jpg"'
 
 #use image url as input
-curl --location --request GET '<your-server-ip>:3300/?url=<your-url>'
+curl --location --request GET '<your-server-ip>:3300/?url=<image-url>'
 ```
 
 ## Tech
----------------
 nsfwjs-server uses a number of open source projects to work properly:
 
 - [nsfwjs] - NSFW detection on the client-side via TensorFlow.js
@@ -45,7 +40,6 @@ nsfwjs-server uses a number of open source projects to work properly:
 - [Express] - Fast node.js network app framework
 
 ## License
----------------
 MIT
 
 [nsfwjs]: https://github.com/infinitered/nsfwjs
