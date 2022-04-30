@@ -62,37 +62,39 @@ app.get('/', async (req, res) => {
         res.status(400).json({
             error: 'Usage: ?url=<your url>'
         })
-    if (url.match(regex)) {
-        try {
-            const response = await fetch('https://' + url)
-            const buffer = Buffer.from(await response.arrayBuffer())
-            const data = await sharp(buffer)
-                .jpeg({
-                    mozjpeg: true
-                })
-                .toBuffer()
-            const image = await convert(data)
-            const predictions = await _model.classify(image)
-            image.dispose()
-            res.json(predictions)
-        } catch (error) {
-            if (error.name === 'FetchError')
-                res.status(400).json({
-                    error: 'Cannot fetch image from URL'
-                })
-            else if (error.name === 'AbortError')
-                res.status(400).json({
-                    error: 'Fetch is aborted'
-                })
-            else
-                res.status(500).json({
-                    error: error.toString()
-                })
+    if (url != null) {
+        if (url.match(regex)) {
+            try {
+                const response = await fetch('https://' + url)
+                const buffer = Buffer.from(await response.arrayBuffer())
+                const data = await sharp(buffer)
+                    .jpeg({
+                        mozjpeg: true
+                    })
+                    .toBuffer()
+                const image = await convert(data)
+                const predictions = await _model.classify(image)
+                image.dispose()
+                res.json(predictions)
+            } catch (error) {
+                if (error.name === 'FetchError')
+                    res.status(400).json({
+                        error: 'Cannot fetch image from URL'
+                    })
+                else if (error.name === 'AbortError')
+                    res.status(400).json({
+                        error: 'Fetch is aborted'
+                    })
+                else
+                    res.status(500).json({
+                        error: error.toString()
+                    })
+            }
+        } else {
+            res.status(400).json({
+                error: 'Request is not a valid URLs'
+            })
         }
-    } else {
-        res.status(400).json({
-            error: 'Request is not a valid URLs'
-        })
     }
 })
 
